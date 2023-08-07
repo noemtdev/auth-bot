@@ -12,6 +12,7 @@ Make sure that the redirect uri matches the login2 endpoint in bot.py
 <br>
 
 The bot.py file also requires a couple of changes..
+<br>
 ![image](https://i.e-z.host/easoli13.png)
 <br>
 You have to change the **host** to your servers ip address and **port** to your designated port.
