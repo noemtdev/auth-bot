@@ -8,7 +8,7 @@ This is the source code of the **nom's auth** Discord bot as it was termed once 
 ![image](https://i.e-z.host/sc0348kj.png)
 ![image](https://i.e-z.host/m9ugxrw3.png)
 <br>
-Make sure that the redirect uri matches the login2 endpoint in bot.py
+Make sure that the redirect uri matches the **index** endpoint in bot.py
 <br>
 
 The bot.py file also requires a couple of changes..
