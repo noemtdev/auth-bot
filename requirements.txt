@@ -1,0 +1,4 @@
+aiohttp
+aiosqlite
+py-cord
+quart
