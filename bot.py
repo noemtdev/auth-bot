@@ -76,7 +76,7 @@ async def login2(endpoint):
             return await render_template('index.html')
         access_token = await oauth2.get_access_token(code, oauth2.redirect_uri, session)
         refresh_token = access_token['refresh_token']
-        user_json = oauth2.get_user_json(access_token['access_token'], session)
+        user_json = await oauth2.get_user_json(access_token['access_token'], session)
         await session.close()
         async with aiosqlite.connect('data.db') as db:
             async with db.execute("SELECT * FROM authed WHERE userid = ?", (user_json['id'],)) as cursor:
