@@ -92,6 +92,8 @@ async def login2(endpoint):
                     member = guild[0].get_member(int(user_json['id']))
                     if member:
                         await member.add_roles(guild[1])
+                        
+        return await render_template('index.html')
 
     except:
         print(traceback.format_exc())
