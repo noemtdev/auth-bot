@@ -74,6 +74,7 @@ async def login2(endpoint):
     try:
         code = request.args.get('code')
         if not code:
+            await session.close()
             return await render_template('index.html')
         access_token = await oauth2.get_access_token(code, oauth2.redirect_uri, session)
         refresh_token = access_token['refresh_token']
