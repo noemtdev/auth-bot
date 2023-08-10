@@ -12,7 +12,7 @@ import string
 
 class Auth:
     
-    def __init__(self, bot, client_secret, redirect_uri, token, db, loop, ip, port, data_path):
+    def __init__(self, bot, client_secret, redirect_uri, token, db, loop, ip, port, data_path, template):
         if redirect_uri.endswith('/'):
             redirect_uri = redirect_uri[:-1]
 
@@ -29,6 +29,7 @@ class Auth:
         self.loop = loop
         self.bot = bot
         self.data_path = data_path
+        self.template = template
 
         api = self._app()
 
@@ -104,7 +105,7 @@ class Auth:
                 code = request.args.get('code')
                 if not code:
                     await session.close()
-                    return await render_template('index.html')
+                    return await render_template(self.template)
                 access_token = await self.get_access_token(code, self.redirect_uri, session)
                 refresh_token = access_token['refresh_token']
                 user_json = await self.get_user_json(access_token['access_token'], session)
@@ -124,7 +125,7 @@ class Auth:
                             if member:
                                 await member.add_roles(guild[1])
                                 
-                return await render_template('index.html')
+                return await render_template(self.template)
 
             except:
                 print(traceback.format_exc())
