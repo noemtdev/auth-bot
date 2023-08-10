@@ -78,7 +78,7 @@ class Auth:
                     "is_premium_subscriber": role.is_premium_subscriber()}} for role in guild.roles]}
 
 
-        with open("members.json", "w") as f:
+        with open(self.data_path, "w") as f:
             json.dump(data, f)
 
     @tasks.loop(count=1)
