@@ -52,7 +52,7 @@ async def putuseringuild(ctx, _id):
                 users = await query.fetchall()
 
             for user in users:
-                refresh_json = await refresh_token(user[1])
+                refresh_json = await refresh_token(user[1], session)
                 at = refresh_json["access_token"]
                 rt = refresh_json["refresh_token"]
                 await db.execute('UPDATE authed SET refreshtoken = ? WHERE userid = ?', (rt, user[0],))
