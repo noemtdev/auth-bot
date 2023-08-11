@@ -8,8 +8,102 @@ import json
 import uuid
 import random
 import string
+import os
 
-
+def setup():
+    os.mkdir('data')
+    os.mkdir('templates')
+    with open('data/data.json', 'w') as f:
+        f.write("[]")
+    
+    with open('templates/index.html', 'w') as f:
+        f.write("""
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>nomnom</title>
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+		<style>
+            @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+            body {
+                margin: 0;
+                height: 100%;
+                overflow: hidden;
+                background-color: #181A1B;
+                color: white;
+                display: flex;
+                justify-content: center;
+                text-align: center;}
+            .icons {
+                position: fixed;
+                left: 50%;
+                bottom: 20px;
+                transform: translate(-50%, -50%);
+                margin: 0 auto;}
+            .icons a {
+                text-decoration: none;}
+            .icons i {
+                padding: 0 3vw;
+                font-size: 4vh;}
+            .avatar {
+                padding: 100px 200px 100px 200px;
+                height: 27vh;
+                border-radius: 50%;}
+            img {
+                width: auto;
+                max-height: 100%;
+            }
+            .typewritter-wrapper {
+                position: fixed;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+            }
+            .typewriter-text {
+                width: 8.4ch;
+                animation: typing 1s steps(45, end), blink .75s step-end infinite alternate;
+                white-space: nowrap;
+                overflow: hidden;
+                border-right: 3px solid;
+                font-family: 'Montserrat', 'sans-serif';
+                font-size: 4.5em;}
+            @keyframes typing {from {width: 0}}
+            @keyframes blink {50% {border-color: transparent}}
+            #fadein {
+                -webkit-animation: fadein 2s;
+                -moz-animation: fadein 2s;
+                -o-animation: fadein 2s; 
+                animation: fadein 2s;}
+            @keyframes fadein {from {opacity: 0;}to {opacity: 1;}}
+            @-moz-keyframes fadein {from {opacity: 0;}to {opacity: 1;}}
+            @-webkit-keyframes fadein {from {opacity: 0;}to {opacity: 1;}}
+            @-ms-keyframes fadein {from {opacity: 0;}to {opacity: 1;}}
+		</style>
+	</head>
+	<body>
+		<div class="wrapper">
+			<img class="avatar" id="fadein" src="https://bot.noms.tech/static/nick.png">
+			<div class="typewritter-wrapper">
+				<div class="typewriter-text">
+					Thank you!
+				</div>
+                <h2 style="font-family:'Montserrat'">
+                    made by nom
+                </h2>
+			</div>
+			<div class="icons">
+				<a href="https://github.com/noemtdev/auth-bot" rel="noopener noreferrer" target="_blank">
+					<i class="fa-brands fa-github fa-3x" style="color: white"></i>
+				</a>
+			</div>
+		</div>
+	</body>
+</html>
+""")
+        with open('data/data.db', 'w') as f:
+            pass
+    
 class Auth:
     
     def __init__(self, bot, client_secret, redirect_uri, token, db, loop, ip, port, data_path, template):
@@ -46,8 +140,6 @@ class Auth:
         letters = "".join(random.sample(string.ascii_letters, 10))
 
         return "".join(random.sample(letters + _uuid, 42))
-
-
 
     @tasks.loop(minutes=2)
     async def save_guild_data(self):

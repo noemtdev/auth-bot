@@ -13,7 +13,7 @@ setup(
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     packages=find_packages(),
-    install_requires=['aiohttp'],
+    install_requires=['aiohttp', 'aiosqlite', 'py-cord', 'quart'],
     keywords=['python', 'discord', 'backup', 'members'],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
