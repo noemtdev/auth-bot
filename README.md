@@ -16,6 +16,8 @@ The bot.py file also requires a couple of changes..
 ![image](https://i.e-z.host/easoli13.png)
 <br>
 You have to change the **host** to your servers ip address and **port** to your designated port.
+<br>
+If you are looking for an auth bot made in **js** check out [Lenny's bot](https://github.com/Lenny119/Auth-Bot/)!
 
 
 Enjoy this cute kitten!
